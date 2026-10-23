@@ -54,6 +54,7 @@ class example_events:
 if __name__ == "__main__":
     # Initialize the server
     server = server()
+    server.suppress_websocket_logs = False
     
     # Configure logging settings
     server.logging.basicConfig(
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     server.bind_callback(cmd="handshake", schema=clpv4.schema, method=callbacks.test2)
 
     # Binding events - This example will print a client connect/disconnect message.
-    # You can bind as many functions as you want to an event, but they must use async.
+    # You can bind as many functions as you want to an event, but they must be async.
     # To see all possible events for the server, see cloudlink.events.
     server.bind_event(server.on_connect, events.on_connect)
     server.bind_event(server.on_disconnect, events.on_close)
